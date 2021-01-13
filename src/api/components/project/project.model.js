@@ -19,7 +19,7 @@ const ProjectSchema = new Schema(
 );
 
 ProjectSchema.pre('remove', (next) => {
-  this.model('Tasks').deleteMany({ project: this.id }, next);
+  this.model('Task').deleteMany({ project: this.id }, next);
 });
 
 const Project = mongoose.model('Project', ProjectSchema);
