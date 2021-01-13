@@ -12,8 +12,8 @@
   },
   "scripts": {
     "build": "babel ./src --out-dir ./build",
-    "start": "nodemon --exec babel-node src/api/index.js",
-    "devstart":"DEBUG=schemeExec:* yarn start",
+    "start": "nodemon --exec babel-node src/api/server.js",
+    "dev":"DEBUG=schemeExec:* yarn start",
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch"

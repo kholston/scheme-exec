@@ -1,17 +1,9 @@
-import 'dotenv/config';
-import './config/mongoConfig';
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
+import debug from 'debug';
+import app from './app';
 
-const app = express();
+const port = process.env.PORT;
+const log = debug('schemeExec:entryPoint');
 
-// Setup Middleware
-app.use(cors());
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-// Setup routes
-
-export default app;
+app.listen(port, () => {
+  log(`API server running on port ${port}`);
+});
