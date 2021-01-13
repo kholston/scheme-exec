@@ -5,31 +5,28 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 const log = debug('schemeExec:mongodb-test');
 const mongoServer = new MongoMemoryServer();
 
-export const connectDatabase = async ()=>{
-  const uri = await mongoServer.getConnectionString();
-  
+export const connectDB = async () => {
+  const uri = await mongoServer.getUri();
+
   const mongooseOpts = {
     useNewUrlParser: true,
-    autoReconnect: true,
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval:1000,
+    useUnifiedTopology: true,
   };
-  
-  await mongoose.connect(uri,mongooseOpts);
-}
 
-export const closeDatabase = async()=>{
+  await mongoose.connect(uri, mongooseOpts);
+};
+
+export const closeDB = async () => {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
   await mongoServer.stop();
-}
+};
 
-export const clearDatabase = async ()=>{
+export const clearDB = async () => {
   const collections = mongoose.connection.collections;
-  
-  for(const key in collections){
+
+  for (const key in collections) {
     const collection = collections[key];
     await collection.deleteMany();
-  };
-}
-
+  }
+};

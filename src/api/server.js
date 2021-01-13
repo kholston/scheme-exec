@@ -1,5 +1,6 @@
 import debug from 'debug';
 import app from './app';
+import './config/mongoConfig';
 
 const port = process.env.PORT;
 const log = debug('schemeExec:entryPoint');
