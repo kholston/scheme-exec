@@ -17,6 +17,10 @@ const UserSchema = new Schema(
   { timestamps: true },
 );
 
+UserSchema.query.byEmail = (email) => {
+  return this.where({ email });
+};
+
 UserSchema.pre('save', async (next) => {
   const user = this;
   if (!user.isModified) return next();
